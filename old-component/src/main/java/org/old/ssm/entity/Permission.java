@@ -1,22 +1,27 @@
 package org.old.ssm.entity;
 
-import java.util.List;
+public class Permission {
 
-public class Role {
-	
 	private Integer id;
 	private String name;
 	private String description;
-	private List<Permission> permission;
+	private String uri;
 
-	public Role() {
+	public Permission() {
 		super();
+	}
+
+	public Permission(Integer id, String name, String description, String uri) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.uri = uri;
 	}
 
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", name=" + name + ", description=" + description + ", permission=" + permission
-				+ "]";
+		return "Permission [id=" + id + ", name=" + name + ", description=" + description + ", uri=" + uri + "]";
 	}
 
 	public Integer getId() {
@@ -43,14 +48,12 @@ public class Role {
 		this.description = description;
 	}
 
-	public List<Permission> getPermission() {
-		return permission;
+	public String getUri() {
+		return uri;
 	}
 
-	public void setPermission(List<Permission> permission) {
-		this.permission = permission;
+	public void setUri(String uri) {
+		this.uri = uri;
 	}
-
-	
 
 }

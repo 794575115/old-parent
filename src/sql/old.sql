@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50556
 File Encoding         : 65001
 
-Date: 2019-11-11 10:31:34
+Date: 2019-11-11 11:11:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,13 +24,14 @@ CREATE TABLE `t_admin` (
   `account` varchar(20) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL,
   `name` varchar(20) DEFAULT NULL,
+  `role_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_admin
 -- ----------------------------
-INSERT INTO `t_admin` VALUES ('1', 'admin', '123', 'admin');
+INSERT INTO `t_admin` VALUES ('1', 'admin', '123', 'admin', '1');
 
 -- ----------------------------
 -- Table structure for `t_check`

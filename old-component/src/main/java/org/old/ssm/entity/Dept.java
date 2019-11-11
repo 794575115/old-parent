@@ -1,22 +1,28 @@
 package org.old.ssm.entity;
 
-import java.util.List;
+public class Dept {
 
-public class Role {
-	
 	private Integer id;
 	private String name;
 	private String description;
-	private List<Permission> permission;
+	// 1-正常状态,0-删除状态
+	private Integer status;
 
-	public Role() {
+	public Dept() {
 		super();
+	}
+
+	public Dept(Integer id, String name, String description, Integer status) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.status = status;
 	}
 
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", name=" + name + ", description=" + description + ", permission=" + permission
-				+ "]";
+		return "Position [id=" + id + ", name=" + name + ", description=" + description + ", status=" + status + "]";
 	}
 
 	public Integer getId() {
@@ -43,14 +49,12 @@ public class Role {
 		this.description = description;
 	}
 
-	public List<Permission> getPermission() {
-		return permission;
+	public Integer getStatus() {
+		return status;
 	}
 
-	public void setPermission(List<Permission> permission) {
-		this.permission = permission;
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
-
 	
-
 }
