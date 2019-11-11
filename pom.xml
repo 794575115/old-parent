@@ -95,7 +95,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<!-- <configuration>
+				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
@@ -105,7 +105,7 @@
 							<goal>repackage</goal>
 						</goals>
 					</execution>
-				</executions> -->
+				</executions>
 
 			</plugin>
 		</plugins>
