@@ -12,5 +12,10 @@
   		<artifactId>old-component</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
+  	<dependency>
+  		<groupId>org.old.ssm</groupId>
+		<artifactId>DeptManage</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
   </dependencies>
 </project>

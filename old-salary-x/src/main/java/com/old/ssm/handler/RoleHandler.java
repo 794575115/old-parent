@@ -20,6 +20,7 @@ public class RoleHandler {
 	@ResponseBody
 	@GetMapping("/role")
 	public List<Role> get(){
+	
 		return roleService.queryAll();
 	}
 	
