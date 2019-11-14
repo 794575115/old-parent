@@ -6,4 +6,11 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>old-permission-x</artifactId>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.old.ssm</groupId>
+  		<artifactId>old-component</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" charset="UTF-8">
+<title>Insert title here</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" th:src="@{../js/jquery-1.8.3.min.js}"></script>
+<script type="text/javascript">
+	$(function() {
+
+	})
+	function toUpdateRole(rid){
+		window.location.href="toUpdateRole?rid="+rid;
+	}
+</script>
+</head>
+<body>
+	<div class="place">
+		<span>位置:</span>
+		<ul class="placeul">
+			<li><a href="#">权限管理</a></li>
+			<li><a href="findRole">查看角色</a></li>
+			<li><a th:href="@{listToDetail(rid=${role.id})}">角色详情</a></li>
+		</ul>
+	</div>
+	<div class="rightinfo">
+
+		<div class="tools" style="background-color: #949494;">
+
+			<div class="queryform" style="background-color: darkcyan;">
+				<center>
+					角色名：<input type="text" class="queryinput" th:value="${role.name}" readonly="readonly"/> 
+				</center>
+			</div>
+
+			<div style="background-color: magenta; float: right;">
+				<input type="button" class="querybtn" th:onclick="'javascript:toUpdateRole('+${role.id}+')'" value="修改" />
+			</div>
+
+		</div>
+	<table class="tablelist">
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>权限名</th>
+				<th>权限介绍</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="permission,status:${role.permission}">
+				<td th:text="${status.count}"></td>
+				<td th:text="${permission.name}"></td>
+				<td th:text="${permission.description}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<script type="text/javascript">
+		$('.tablelist tbody tr:odd').addClass('odd');
+	</script>
+</body>
+</html>

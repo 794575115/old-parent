@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" th:src="@{../js/jquery-1.8.3.min.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+	$(function() {
+		/* var xx=[[${session.xx}]]*/
+		var yy=[[${role}]];
+		var permissions = yy.permission
+		var permissionLength = permissions.length;
+		for(var i=0;i<permissionLength;i++){
+			$("#"+permissions[i].id).attr("checked","checked");
+		}
+	})
+	function check(){
+		if($("#name").val().trim()==''){
+			alert("角色名不为空");
+			return false;
+		}
+		if($("#description").val().trim()==''){
+			alert("角色介绍不为空");
+			return false;
+		}
+		if($("input[name='permissionList']:checked").length==0){
+			alert("权限至少选一个");
+			return false;
+		}
+		return true;
+	}
+</script>
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">权限管理</a></li>
+			<li><a href="findRole">查看角色</a></li>
+			<li><a th:href="@{listToDetail(rid=${role.id})}">角色详情</a></li>
+			<li><a th:href="@{toUpdateRole(rid=${role.id})}">角色修改</a></li>
+		</ul>
+	</div>
+	<div class="formbody">
+		<div class="formtitle">
+			<span>信息修改</span>
+		</div>
+		<form action="modifyRole" onsubmit="return check()">
+			<ul class="forminfo">
+				<li><label>角色名</label><input name="name" type="text"
+					class="dfinput" id="name" th:value="${role.name}"/><i>不多于10个字,且不重复</i></li>
+				<li><label>角色介绍</label><input name="description" type="text"
+					class="dfinput" id="description" th:value="${role.description}"/><i></i></li>
+				<li th:each="permission,status:${permissions}"><input
+					type="checkbox" th:text="${permission.name}"
+					th:value="${permission.id}" name="permissionList" class="permissionList" th:id="${permission.id}"></input></li>
+				<li><label>&nbsp;</label>
+				<input type="hidden" name="id" th:value="${role.id}"/>
+				<input name="" type="submit"
+					class="btn" value="确认保存" /></li>
+			</ul>
+		</form>
+
+	</div>
+</body>
+</html>

@@ -5,6 +5,9 @@ import java.util.Date;
 public class Check {
 
 	private Integer id;
+	private Integer year;
+	private Integer month;
+	private Integer day;
 	private Date checkIn;
 	private Date checkOut;
 	private Integer empId;
@@ -13,9 +16,12 @@ public class Check {
 		super();
 	}
 
-	public Check(Integer id, Date checkIn, Date checkOut, Integer empId) {
+	public Check(Integer id, Integer year, Integer month, Integer day, Date checkIn, Date checkOut, Integer empId) {
 		super();
 		this.id = id;
+		this.year = year;
+		this.month = month;
+		this.day = day;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
 		this.empId = empId;
@@ -23,7 +29,32 @@ public class Check {
 
 	@Override
 	public String toString() {
-		return "Check [id=" + id + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", empId=" + empId + "]";
+		return "Check [id=" + id + ", year=" + year + ", month=" + month + ", day=" + day + ", checkIn=" + checkIn
+				+ ", checkOut=" + checkOut + ", empId=" + empId + "]";
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public Integer getMonth() {
+		return month;
+	}
+
+	public void setMonth(Integer month) {
+		this.month = month;
+	}
+
+	public Integer getDay() {
+		return day;
+	}
+
+	public void setDay(Integer day) {
+		this.day = day;
 	}
 
 	public Integer getId() {

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50556
 File Encoding         : 65001
 
-Date: 2019-11-11 11:11:32
+Date: 2019-11-13 17:01:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -39,8 +39,11 @@ INSERT INTO `t_admin` VALUES ('1', 'admin', '123', 'admin', '1');
 DROP TABLE IF EXISTS `t_check`;
 CREATE TABLE `t_check` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `check_in` date DEFAULT NULL,
-  `check_out` date DEFAULT NULL,
+  `year` int(11) DEFAULT NULL,
+  `month` int(11) DEFAULT NULL,
+  `day` int(11) DEFAULT NULL,
+  `check_in` time DEFAULT NULL,
+  `check_out` time DEFAULT NULL,
   `emp_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -192,7 +195,7 @@ CREATE TABLE `t_position` (
   `status` int(11) DEFAULT NULL,
   `dept_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_position
