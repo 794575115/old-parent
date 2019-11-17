@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.old.ssm.mapper.SuggestionMapper">
+
+	<insert id="add" parameterType="org.old.ssm.entity.Suggestion">
+		insert into t_suggestion values(null,#{title},#{sendTime},#{content},#{empId})
+	</insert>
+
+	<select id="findAll" resultType="org.old.ssm.entity.Suggestion">
+		select * from t_suggestion
+	</select>
+	
+	<select id="findByEid" resultType="org.old.ssm.entity.Suggestion">
+		select * from t_suggestion where emp_id=#{eid}
+	</select>
+	
+	<select id="findById" resultType="org.old.ssm.entity.Suggestion">
+		select * from t_suggestion where id=#{id}
+	</select>
+	
+	<delete id="delete">
+		delete from t_suggestion where id=#{id}
+	</delete>
+
+</mapper>

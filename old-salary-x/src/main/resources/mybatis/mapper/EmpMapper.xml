@@ -11,7 +11,7 @@
 			and position_id=#{positionId}
 		</if>
 		<if test="name != null and name != ''">
-			and name=#{name}
+			and name like '%%' #{name} '%%'
 		</if>
 	</select>
 	

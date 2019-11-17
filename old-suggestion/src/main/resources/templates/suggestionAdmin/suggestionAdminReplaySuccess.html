@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+		<span>位置:</span>
+		<ul class="placeul">
+			<li><a href="#">意见管理</a></li>
+			<li><a href="find">意见列表</a></li>
+			<li><a th:href="@{toDetail(id=${replay.suggestionId})}">意见详情</a></li>
+			<li><a th:href="@{toReplay(id=${replay.suggestionId})}">意见回复</a></li>
+			<li><a>回复成功</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+
+		<div class="tools" style="background-color: #949494;">
+
+			<div class="queryform" style="background-color: darkcyan;"></div>
+
+			<div style="background-color: magenta; float: right;"></div>
+
+		</div>
+		<center>
+			<h1>回复成功</h1>
+		</center>
+	</div>
+</body>
+</html>

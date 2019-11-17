@@ -114,5 +114,6 @@
 		<module>old-component</module>
 		<module>old-salary-x</module>
 		<module>old-permission-x</module>
+		<module>old-suggestion-t</module>
 	</modules>
 </project>
