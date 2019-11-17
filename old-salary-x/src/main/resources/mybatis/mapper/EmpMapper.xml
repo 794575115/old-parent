@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.old.ssm.mapper.EmpMapper">
+	
+	<select id="findByDeptPositionName" resultType="org.old.ssm.entity.Emp">
+		select * from t_emp where status=1
+		<if test="deptId != 0">
+			and dept_id=#{deptId}
+		</if>
+		<if test="positionId != 0">
+			and position_id=#{positionId}
+		</if>
+		<if test="name != null and name != ''">
+			and name=#{name}
+		</if>
+	</select>
+	
+	<select id="findAll" resultType="org.old.ssm.entity.Emp">
+		select * from t_emp where status=1
+	</select>
+	
+</mapper>

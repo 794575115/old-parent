@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.old.ssm.mapper.SalaryMapper">
+
+	<select id="findByEidYearMonth" resultType="org.old.ssm.entity.Salary">
+		select * from t_salary where 1=1
+		<if test="eid !=0">
+			and emp_id=#{eid}
+		</if>
+		<if test="year !=0">
+			and salary_year=#{year} 
+		</if>
+		<if test="month !=0">
+			and salary_month=#{month}
+		</if>
+	</select>
+	
+	<select id="findByEid" resultType="org.old.ssm.entity.Salary">
+		select * from t_salary where emp_id=#{eid}
+	</select>
+	
+	<select id="findAll" resultType="org.old.ssm.entity.Salary">
+		select * from t_salary
+	</select>
+	
+	<select id="findMinYear" resultType="Integer">
+		select min(salary_year) from t_salary
+	</select>
+</mapper>

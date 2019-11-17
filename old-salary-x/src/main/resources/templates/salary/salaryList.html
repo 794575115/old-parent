@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" charset="UTF-8">
+<title>Insert title here</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" th:src="@{../js/jquery-1.8.3.min.js}"></script>
+<script type="text/javascript">
+	$(function() {
+		$('.tablelist tbody tr:odd').addClass('odd');
+		setYear();
+	})
+	function setYear(){
+		var years = [[${years}]];
+		for(var i=0;i<years.length;i++){
+			$("#year").append("<option value='"+years[i]+"'>"+years[i]+"</option>");
+		}
+	}
+	function setMonth(data){
+		$.ajax({
+	         type : "post",
+	         async : false,
+	         url : "/salary/getMonths",
+	         data : {"year":data},
+	         dataType : "json",
+	         success : function(result) {
+	        	 $("#month").html("<option value='0'>月</option>");
+	        	 for(var i=0;i<result.length;i++){
+	     			$("#month").append("<option value='"+result[i]+"'>"+result[i]+"</option>");
+	     		}
+	         },
+	         error : function(errorMsg) {
+	             alert("查不到该年的月份");      
+	         }
+	    })
+	}
+	function query(){
+		var year = $("#year").val();
+		var month = $("#month").val();
+		$.ajax({
+	         type : "post",
+	         async : false,
+	         url : "/salary/findByIdYearMonth",
+	         data : {
+	        	 "year" : year,
+	        	 "month" : month
+	        	 },
+	         dataType : "json",
+	         success : function(result) {
+	        	 $("#tbodyTag").html("");
+	        	 for(var i=0;i<result.length;i++){
+	        		 if((i+1)%2==1){
+	        			 $("#tbodyTag").append("<tr>"+
+			        			 "<td>"+(i+1)+"</td>"+
+			        			 "<td class='year' id='"+(i+1)+"'>"+result[i].salaryYear+"</td>"+
+			        			 "<td>"+result[i].salaryMonth+"</td>"+
+			        			 "<td>"+result[i].baseSalary+"</td>"+
+			        			 "<td>"+result[i].insurance+"</td>"+
+			        			 "<td>"+result[i].accumulationFund+"</td>"+
+			        			 "<td>"+result[i].tax+"</td>"+
+			        			 "<td>"+result[i].achievements+"</td>"+
+			        			 "<td>"+result[i].reallySalary+"</td>"+
+			        			 "</tr>"); 
+	        		 }else{
+	        			 $("#tbodyTag").append("<tr class='odd'>"+
+			        			 "<td>"+(i+1)+"</td>"+
+			        			 "<td class='year' id='"+(i+1)+"'>"+result[i].salaryYear+"</td>"+
+			        			 "<td>"+result[i].salaryMonth+"</td>"+
+			        			 "<td>"+result[i].baseSalary+"</td>"+
+			        			 "<td>"+result[i].insurance+"</td>"+
+			        			 "<td>"+result[i].accumulationFund+"</td>"+
+			        			 "<td>"+result[i].tax+"</td>"+
+			        			 "<td>"+result[i].achievements+"</td>"+
+			        			 "<td>"+result[i].reallySalary+"</td>"+
+			        			 "</tr>");
+	        		 }
+	        	 }
+	        	 
+	         },
+	         error : function(errorMsg) {
+	             alert("查不到该年月的薪资");      
+	         }
+	    })
+	}
+</script>
+</head>
+<body>
+	<div class="place">
+		<span>位置:</span>
+		<ul class="placeul">
+			<li><a href="#">薪资管理</a></li>
+			<li><a href="toSalaryList">查询薪资</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+
+		<div class="tools" style="background-color: #949494;">
+
+			<div class="queryform" style="background-color: darkcyan;">
+				<select id="year" type="text" name="year" onchange="setMonth(this.value)">
+					<option value="0">年</option>
+				</select>
+				<select id="month" type="text" name="month">
+					<option value="0">月</option>
+				</select>
+				<input type="button" class="querybtn" value="查询" onclick="query()"/>
+			</div>
+
+			<div style="background-color: magenta; float: right;">
+			</div>
+
+		</div>
+
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>年</th>
+					<th>月</th>
+					<th>基础薪资</th>
+					<th>五险</th>
+					<th>公积金</th>
+					<th>税</th>
+					<th>绩效</th>
+					<th>实发薪资</th>
+				</tr>
+			</thead>
+			<tbody id="tbodyTag">
+				<tr th:each="salary,status:${salaries}">
+					<td th:text="${status.count}"></td>
+					<td th:text="${salary.salaryYear}" class="year" th:id="${status.count}"></td>
+					<td th:text="${salary.salaryMonth}"></td>
+					<td th:text="${salary.baseSalary}"></td>
+					<td th:text="${salary.insurance}"></td>
+					<td th:text="${salary.accumulationFund}"></td>
+					<td th:text="${salary.tax}"></td>
+					<td th:text="${salary.achievements}"></td>
+					<td th:text="${salary.reallySalary}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="pagin">
+			<div class="message">
+				共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页
+			</div>
+			<ul class="paginList">
+				<li class="paginItem"><a href="javascript:;"><span
+						class="pagepre"></span></a></li>
+				<li class="paginItem"><a href="javascript:;">1</a></li>
+				<li class="paginItem current"><a href="javascript:;">2</a></li>
+				<li class="paginItem"><a href="javascript:;">3</a></li>
+				<li class="paginItem"><a href="javascript:;">4</a></li>
+				<li class="paginItem"><a href="javascript:;">5</a></li>
+				<li class="paginItem more"><a href="javascript:;">...</a></li>
+				<li class="paginItem"><a href="javascript:;">10</a></li>
+				<li class="paginItem"><a href="javascript:;"> <span
+						class="pagenxt"></span></a></li>
+			</ul>
+		</div>
+
+	</div>
+</body>
+</html>
